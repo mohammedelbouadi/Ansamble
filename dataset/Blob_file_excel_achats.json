@@ -1,0 +1,67 @@
+{
+	"name": "Blob_file_excel_achats",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Blob_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "CONSOMMATION",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "BASE ACHATS_MOIS_ANNEE.xlsx",
+				"container": "test"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "MOIS",
+				"type": "String"
+			},
+			{
+				"name": "SOCIETE",
+				"type": "String"
+			},
+			{
+				"name": "CODE SITE",
+				"type": "String"
+			},
+			{
+				"name": "SITE",
+				"type": "String"
+			},
+			{
+				"name": "CODE FOURNISSEUR",
+				"type": "String"
+			},
+			{
+				"name": "FOURNISSEUR",
+				"type": "String"
+			},
+			{
+				"name": "VIVRE",
+				"type": "String"
+			},
+			{
+				"name": "BOISSON",
+				"type": "String"
+			},
+			{
+				"name": "PRODUIT D'ENTRETIEN",
+				"type": "String"
+			},
+			{
+				"name": "DIVERS",
+				"type": "String"
+			},
+			{
+				"name": "EMBALLAGE",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

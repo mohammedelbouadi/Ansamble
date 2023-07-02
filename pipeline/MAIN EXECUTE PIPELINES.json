@@ -1,0 +1,43 @@
+{
+	"name": "MAIN EXECUTE PIPELINES",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute STG",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "STG MAIN DATA LOAD",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute DWH",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute STG",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "DWH MAIN DATA LOAD",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-06-28T12:40:36Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

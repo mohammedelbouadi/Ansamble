@@ -1,0 +1,9 @@
+{
+	"name": "ADF-ANS-DEV",
+	"location": "northeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "c9f5e38a-ffb0-481b-a6f5-1fef236d9ac1",
+		"tenantId": "bbc167d3-91fa-4a85-b1a0-c2ce130392ff"
+	}
+}
