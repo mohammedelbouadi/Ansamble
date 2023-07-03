@@ -3,11 +3,11 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy Data - Achats",
+				"name": "Copy Data - Cons",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "get Achats",
+						"activity": "get Conso",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -22,11 +22,22 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
 					"enableStaging": false
-				}
+				},
+				"outputs": [
+					{
+						"referenceName": "sink_consommation",
+						"type": "DatasetReference"
+					}
+				]
 			},
 			{
-				"name": "get Achats",
+				"name": "get Conso",
 				"type": "WebActivity",
 				"dependsOn": [],
 				"policy": {
@@ -41,10 +52,16 @@
 					"connectVia": {
 						"referenceName": "AutoResolveIntegrationRuntime",
 						"type": "IntegrationRuntimeReference"
-					}
+					},
+					"method": "POST"
 				}
 			}
 		],
+		"variables": {
+			"LastMonth": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }

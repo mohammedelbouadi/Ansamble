@@ -39,7 +39,14 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "LastMonth",
+					"value": {
+						"value": "@activity('Get Data from SP ').output.value",
+						"type": "Expression"
+					}
+				}
 			},
 			{
 				"name": "Execute Load Achats",
@@ -54,6 +61,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"pipeline": {
+						"referenceName": "STG Data load_Achats",
+						"type": "PipelineReference"
+					},
 					"waitOnCompletion": true
 				}
 			},
@@ -70,10 +81,19 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"pipeline": {
+						"referenceName": "STG Data load_Cons",
+						"type": "PipelineReference"
+					},
 					"waitOnCompletion": true
 				}
 			}
 		],
+		"variables": {
+			"LastMonth": {
+				"type": "String"
+			}
+		},
 		"annotations": [],
 		"lastPublishTime": "2023-06-28T12:37:12Z"
 	},

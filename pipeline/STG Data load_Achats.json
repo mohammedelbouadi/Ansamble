@@ -22,8 +22,19 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
 					"enableStaging": false
-				}
+				},
+				"outputs": [
+					{
+						"referenceName": "sink_Achats",
+						"type": "DatasetReference"
+					}
+				]
 			},
 			{
 				"name": "get Achats",

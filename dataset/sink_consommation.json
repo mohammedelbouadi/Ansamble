@@ -1,0 +1,53 @@
+{
+	"name": "sink_consommation",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Database_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Mois",
+				"type": "varchar"
+			},
+			{
+				"name": "Société",
+				"type": "varchar"
+			},
+			{
+				"name": "Site",
+				"type": "varchar"
+			},
+			{
+				"name": "Code Site",
+				"type": "varchar"
+			},
+			{
+				"name": "Vivre",
+				"type": "varchar"
+			},
+			{
+				"name": "Boisson",
+				"type": "varchar"
+			},
+			{
+				"name": "PDE",
+				"type": "varchar"
+			},
+			{
+				"name": "Emballage",
+				"type": "varchar"
+			},
+			{
+				"name": "Divers",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "ANS_STG",
+			"table": "Consommation"
+		}
+	}
+}
