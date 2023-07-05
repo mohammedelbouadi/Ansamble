@@ -3,11 +3,11 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy Data - Achats",
+				"name": "Copy Data - Conso",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "get Achats",
+						"activity": "get Conso",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -22,22 +22,44 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"additionalHeaders": {
+								"value": "@{concat('Authorization: Bearer ',activity('get Achats').output.access_token)}",
+								"type": "Expression"
+							},
+							"requestTimeout": ""
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
+					},
 					"sink": {
-						"type": "AzureSqlSink",
-						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
 					},
 					"enableStaging": false
 				},
+				"inputs": [
+					{
+						"referenceName": "SharepointBinary",
+						"type": "DatasetReference"
+					}
+				],
 				"outputs": [
 					{
-						"referenceName": "sink_Achats",
+						"referenceName": "sink_SP",
 						"type": "DatasetReference"
 					}
 				]
 			},
 			{
-				"name": "get Achats",
+				"name": "get Conso",
 				"type": "WebActivity",
 				"dependsOn": [],
 				"policy": {
@@ -49,10 +71,16 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"url": "https://accounts.accesscontrol.windows.net/bbc167d3-91fa-4a85-b1a0-c2ce130392ff/tokens/OAuth/2",
 					"connectVia": {
 						"referenceName": "AutoResolveIntegrationRuntime",
 						"type": "IntegrationRuntimeReference"
-					}
+					},
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/x-www-form-urlencoded"
+					},
+					"body": "grant_type=client_credentials&client_id=17b988d5-fb54-42db-b6ea-37b9c949c7b0@bbc167d3-91fa-4a85-b1a0-c2ce130392ff&client_secret=Skf8Q~BS9U4AVMOXONm~DdtOwQVC4WCsX6.aXaKa&resource=00000003-0000-0ff1-ce00-000000000000/ansambleint.sharepoint.com@bbc167d3-91fa-4a85-b1a0-c2ce130392ff"
 				}
 			}
 		],

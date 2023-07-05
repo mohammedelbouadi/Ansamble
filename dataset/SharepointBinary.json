@@ -1,0 +1,17 @@
+{
+	"name": "SharepointBinary",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SharepointOnline",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": "/sites/BI354/_api/web/GetFileByServerRelativeUrl ('sites/BI354/Documents partages/General/Source de données/ANSAMBLE/2023/REALISE/BASE CONSOMMATION_AVRIL_2023.xlsx')/$value"
+			}
+		}
+	}
+}
