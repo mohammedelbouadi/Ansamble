@@ -7,7 +7,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "get Conso",
+						"activity": "get Achats",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -59,7 +59,7 @@
 				]
 			},
 			{
-				"name": "get Conso",
+				"name": "get Achats",
 				"type": "WebActivity",
 				"dependsOn": [],
 				"policy": {
