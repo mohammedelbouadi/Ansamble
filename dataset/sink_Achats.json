@@ -25,19 +25,15 @@
 				"type": "varchar"
 			},
 			{
-				"name": "Fournisseur",
-				"type": "varchar"
-			},
-			{
-				"name": "Code Fournisseur",
-				"type": "varchar"
-			},
-			{
 				"name": "Vivre",
 				"type": "varchar"
 			},
 			{
 				"name": "Boisson",
+				"type": "varchar"
+			},
+			{
+				"name": "PDE",
 				"type": "varchar"
 			},
 			{
@@ -51,7 +47,7 @@
 		],
 		"typeProperties": {
 			"schema": "ANS_STG",
-			"table": "Achats"
+			"table": "Consommation"
 		}
 	}
 }
