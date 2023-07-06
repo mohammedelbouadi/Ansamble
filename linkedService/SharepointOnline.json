@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "HttpServer",
 		"typeProperties": {
-			"url": "https://https://ansambleint.sharepoint.com",
+			"url": "https://https//ansambleint.sharepoint.com/sites/BI354/_api/web/GetFileByServerRelativeUrl%20('sites/BI354/Documents%20partages/General/Source%20de%20donn%C3%A9es/ANSAMBLE/2023/REALISE/BASE%20CONSOMMATION_AVRIL_2023.xlsx')/$value",
 			"enableServerCertificateValidation": false,
 			"authenticationType": "Anonymous"
 		},
