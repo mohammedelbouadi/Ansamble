@@ -1,0 +1,74 @@
+{
+	"name": "excelAmort",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "linkedService_stg",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Amortissement",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "test1.xlsx",
+				"fileSystem": "staging"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "MOIS",
+				"type": "String"
+			},
+			{
+				"name": "SOCIETE",
+				"type": "String"
+			},
+			{
+				"name": "CODE SITE",
+				"type": "String"
+			},
+			{
+				"name": "SITE",
+				"type": "String"
+			},
+			{
+				"name": "CODE COMPTE COMPTABLE",
+				"type": "String"
+			},
+			{
+				"name": "INTITULE COMPTE COMPTABLE",
+				"type": "String"
+			},
+			{
+				"name": "Date Début Amortissement",
+				"type": "String"
+			},
+			{
+				"name": "Date fin Amortissement",
+				"type": "String"
+			},
+			{
+				"name": "N° Facture",
+				"type": "String"
+			},
+			{
+				"name": "valeur acquisition",
+				"type": "String"
+			},
+			{
+				"name": "Code Fournisseur",
+				"type": "String"
+			},
+			{
+				"name": "Fournisseur",
+				"type": "String"
+			},
+			{
+				"name": "Montant Amortissement",
+				"type": "String"
+			}
+		]
+	}
+}
