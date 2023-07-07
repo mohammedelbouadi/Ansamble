@@ -1,0 +1,69 @@
+{
+	"name": "sink_Amort",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Database_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Mois",
+				"type": "varchar"
+			},
+			{
+				"name": "Société",
+				"type": "varchar"
+			},
+			{
+				"name": "Site",
+				"type": "varchar"
+			},
+			{
+				"name": "Code Site",
+				"type": "varchar"
+			},
+			{
+				"name": "Code Compte Comptable",
+				"type": "varchar"
+			},
+			{
+				"name": "Intitule compte comptable",
+				"type": "varchar"
+			},
+			{
+				"name": "Date Début Amortissement",
+				"type": "varchar"
+			},
+			{
+				"name": "Date Fin Amortissement",
+				"type": "varchar"
+			},
+			{
+				"name": "N° Facture",
+				"type": "varchar"
+			},
+			{
+				"name": "Valeur Acquisition",
+				"type": "varchar"
+			},
+			{
+				"name": "Code Fournisseur",
+				"type": "varchar"
+			},
+			{
+				"name": "Fournisseur",
+				"type": "varchar"
+			},
+			{
+				"name": "Montant Amortissement",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "ANS_STG",
+			"table": "Amortissement"
+		}
+	}
+}

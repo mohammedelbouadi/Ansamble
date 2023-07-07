@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy Data - Conso",
+				"name": "Copy Data to BLOB - Amort",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -82,6 +82,221 @@
 					},
 					"body": "grant_type=client_credentials&client_id=17b988d5-fb54-42db-b6ea-37b9c949c7b0@bbc167d3-91fa-4a85-b1a0-c2ce130392ff&client_secret=Skf8Q~BS9U4AVMOXONm~DdtOwQVC4WCsX6.aXaKa&resource=00000003-0000-0ff1-ce00-000000000000/ansambleint.sharepoint.com@bbc167d3-91fa-4a85-b1a0-c2ce130392ff"
 				}
+			},
+			{
+				"name": "LOAD Data to DATABASE - Amort",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy Data to BLOB - Amort",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ExcelSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "MOIS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Mois",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SOCIETE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Société",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SITE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Site",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CODE SITE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Code Site",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CODE COMPTE COMPTABLE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Code Compte Comptable",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "INTITULE COMPTE COMPTABLE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Intitule compte comptable",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Date Début Amortissement",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Date Début Amortissement",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Date fin Amortissement",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Date Fin Amortissement",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "N° Facture",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "N° Facture",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "valeur acquisition",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Valeur Acquisition",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Code Fournisseur",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Code Fournisseur",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Fournisseur",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Fournisseur",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Montant Amortissement",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Montant Amortissement",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "excelAmort",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "sink_Amort",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []
