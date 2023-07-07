@@ -1,0 +1,16 @@
+{
+	"name": "PostgreSql1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "PostgreSql",
+		"typeProperties": {
+			"connectionString": "host=c596a3a0-caae-4c3f-8137-b3154b6ffa87.b9366f7fcf0b43acb51a70da08153291.databases.appdomain.cloud;port=30528;database=DB_ANSAMBLE_PROD;uid=nelite;encryptionmethod=1;validateservercertificate=0",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEQ0QzJEMEM1LUQ4QTktNDY3Qy1BRDA0LTIzRUMyMjVBMDlFOF8zY2UwZDlmMC1hYWIzLTQ4YzAtYTQyYi02ODlkNzFkMDZhYjkiDQp9"
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
