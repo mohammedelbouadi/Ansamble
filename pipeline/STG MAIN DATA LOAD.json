@@ -3,8 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Get Data from SP",
-				"type": "WebActivity",
+				"name": "ACHATS Data load",
+				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -15,85 +15,175 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"connectVia": {
-						"referenceName": "AutoResolveIntegrationRuntime",
-						"type": "IntegrationRuntimeReference"
+					"source": {
+						"type": "ExcelSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE [ANS_STG].[Achats]",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"disableMetricsCollection": false
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "linkedService1",
+							"type": "LinkedServiceReference"
+						},
+						"path": "staging",
+						"enableCompression": false
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "MOIS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Mois",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SOCIETE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Société",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SITE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Site",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CODE SITE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Code Site",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FOURNISSEUR",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Fournisseur",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "CODE FOURNISSEUR",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Code Fournisseur",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "VIVRE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Vivre",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BOISSON",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Boisson",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "EMBALLAGE",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Emballage",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DIVERS",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Divers",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": false,
+							"treatBooleanAsNumber": false
+						}
 					}
-				}
-			},
-			{
-				"name": "Last Month",
-				"type": "SetVariable",
-				"dependsOn": [
-					{
-						"activity": "Get Data from SP ",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
 				},
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "LastMonth",
-					"value": {
-						"value": "@activity('Get Data from SP ').output.value",
-						"type": "Expression"
-					}
-				}
-			},
-			{
-				"name": "Execute Load Achats",
-				"type": "ExecutePipeline",
-				"dependsOn": [
+				"inputs": [
 					{
-						"activity": "Last Month",
-						"dependencyConditions": [
-							"Succeeded"
-						]
+						"referenceName": "Blob_file_excel_achats",
+						"type": "DatasetReference"
 					}
 				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "STG Data load_Achats",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
-				"name": "Execute Load Cons",
-				"type": "ExecutePipeline",
-				"dependsOn": [
+				"outputs": [
 					{
-						"activity": "Last Month",
-						"dependencyConditions": [
-							"Succeeded"
-						]
+						"referenceName": "STG_ACHATS_TABLE",
+						"type": "DatasetReference"
 					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "STG Data load_Cons",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
+				]
 			}
 		],
-		"variables": {
-			"LastMonth": {
-				"type": "String"
-			}
-		},
 		"annotations": [],
 		"lastPublishTime": "2023-06-28T12:37:12Z"
 	},
