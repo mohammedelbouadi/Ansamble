@@ -3,13 +3,13 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Execute STG",
+				"name": "Execute STG ODOO Pipeline",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "STG MAIN DATA LOAD",
+						"referenceName": "STG Data Load - ODOO",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
@@ -20,7 +20,13 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Execute STG",
+						"activity": "Execute STG ODOO Pipeline",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Execute STG SP Pipeline",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -29,15 +35,31 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "DWH MAIN DATA LOAD",
+						"referenceName": "DWH - Historization",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute STG SP Pipeline",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "STG Data Load - SP",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
 				}
 			}
 		],
+		"folder": {
+			"name": "ANSAMBLE - BI PROJECT"
+		},
 		"annotations": [],
-		"lastPublishTime": "2023-06-28T12:40:36Z"
+		"lastPublishTime": "2023-07-11T15:53:16Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

@@ -1,0 +1,305 @@
+{
+	"name": "STG Data Load - SP_copy",
+	"properties": {
+		"activities": [
+			{
+				"name": "get Accesstoken",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://accounts.accesscontrol.windows.net/bbc167d3-91fa-4a85-b1a0-c2ce130392ff/tokens/OAuth/2",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/x-www-form-urlencoded"
+					},
+					"body": "grant_type=client_credentials&client_id=17b988d5-fb54-42db-b6ea-37b9c949c7b0@bbc167d3-91fa-4a85-b1a0-c2ce130392ff&client_secret=Skf8Q~BS9U4AVMOXONm~DdtOwQVC4WCsX6.aXaKa&resource=00000003-0000-0ff1-ce00-000000000000/ansambleint.sharepoint.com@bbc167d3-91fa-4a85-b1a0-c2ce130392ff"
+				}
+			},
+			{
+				"name": "get Years",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "get Accesstoken",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://ansambleint.sharepoint.com/sites/BI354/_api/web/GetFolderByServerRelativeUrl('/sites/BI354/Documents partages/General/Source de données/ANSAMBLE')?$expand=Folders&$select=Folders/ServerRelativeUrl",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "GET",
+					"headers": {
+						"Authorization": {
+							"value": "@{concat('Bearer ',activity('get Accesstoken').output.access_token)}",
+							"type": "Expression"
+						},
+						"Accept": "application/json;odata=verbose",
+						"Content-Type": "application/json"
+					}
+				}
+			},
+			{
+				"name": "Filter Years",
+				"type": "Filter",
+				"dependsOn": [
+					{
+						"activity": "get Years",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('get Years').output.d.Folders.results",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@equals(\n    item()\n    ,last(activity('get Years').output.d.Folders.results)  \n    )",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "get Months",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Filter Years",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "@concat('https://ansambleint.sharepoint.com/sites/BI354/_api/web/GetFolderByServerRelativeUrl('''\n        ,activity('Filter Years').output.Value[0].ServerRelativeUrl\n        ,\n        '/REALISE'')'\n        ,\n         '?$expand=Folders&$select=Folders/ServerRelativeUrl ')",
+						"type": "Expression"
+					},
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "GET",
+					"headers": {
+						"Authorization": {
+							"value": "@{concat('Bearer ',activity('get Accesstoken').output.access_token)}",
+							"type": "Expression"
+						},
+						"Accept": "application/json;odata=verbose",
+						"Content-Type": "application/json"
+					}
+				}
+			},
+			{
+				"name": "Filter Months",
+				"type": "Filter",
+				"dependsOn": [
+					{
+						"activity": "get Months",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('get Months').output.d.Folders.results",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@equals(\n    item()\n    ,first(activity('get Months').output.d.Folders.results)  \n    )",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "get Files",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Filter Months",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "@concat('https://ansambleint.sharepoint.com/sites/BI354/_api/web/GetFolderByServerRelativeUrl('''\n        ,activity('Filter Months').output.Value[0].ServerRelativeUrl\n        ,\n        ''')?$expand=Files')",
+						"type": "Expression"
+					},
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "GET",
+					"headers": {
+						"Authorization": {
+							"value": "@{concat('Bearer ',activity('get Accesstoken').output.access_token)}",
+							"type": "Expression"
+						},
+						"Accept": "application/json;odata=verbose",
+						"Content-Type": "application/json"
+					}
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('get Files').output.d.Files.results",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "LOAD SP FILES INTO BLOB",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "BinarySource",
+									"storeSettings": {
+										"type": "HttpReadSettings",
+										"requestMethod": "GET"
+									},
+									"formatSettings": {
+										"type": "BinaryReadSettings"
+									}
+								},
+								"sink": {
+									"type": "BinarySink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "SP_Bi_Files_input",
+									"type": "DatasetReference",
+									"parameters": {
+										"Filename": {
+											"value": "@concat(item().__metadata.uri, '/$value')",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "SP_bi_files_sink",
+									"type": "DatasetReference"
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "get Files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Variable",
+					"value": {
+						"value": "@string(activity('get Files').output.d.Files.results)",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"link": {
+				"type": "String"
+			},
+			"linke": {
+				"type": "String"
+			},
+			"Variable": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "ANSAMBLE - BI PROJECT"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-07-12T16:30:38Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

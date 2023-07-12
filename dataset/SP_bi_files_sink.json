@@ -1,0 +1,21 @@
+{
+	"name": "SP_bi_files_sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sgdev_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SP_Datasets"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "staging"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

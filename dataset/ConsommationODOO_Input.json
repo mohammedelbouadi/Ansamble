@@ -1,0 +1,20 @@
+{
+	"name": "ConsommationODOO_Input",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Postgre_linkService",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "ODOO_Datasets"
+		},
+		"annotations": [],
+		"type": "PostgreSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "public",
+			"table": "dcd_cloture_fiche_consommation"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

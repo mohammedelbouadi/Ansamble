@@ -1,0 +1,101 @@
+{
+	"name": "SitesODOO_sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDatabase_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "ODOO_Datasets"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Id",
+				"type": "varchar"
+			},
+			{
+				"name": "name",
+				"type": "varchar"
+			},
+			{
+				"name": "create_uid",
+				"type": "varchar"
+			},
+			{
+				"name": "company_id",
+				"type": "varchar"
+			},
+			{
+				"name": "write_uid",
+				"type": "varchar"
+			},
+			{
+				"name": "write_date",
+				"type": "varchar"
+			},
+			{
+				"name": "contract_id",
+				"type": "varchar"
+			},
+			{
+				"name": "ror_id",
+				"type": "varchar"
+			},
+			{
+				"name": "manager_emp_id",
+				"type": "varchar"
+			},
+			{
+				"name": "zone_id",
+				"type": "varchar"
+			},
+			{
+				"name": "location_id",
+				"type": "varchar"
+			},
+			{
+				"name": "ref",
+				"type": "varchar"
+			},
+			{
+				"name": "start_dcd",
+				"type": "varchar"
+			},
+			{
+				"name": "dr_id",
+				"type": "varchar"
+			},
+			{
+				"name": "location_type_id",
+				"type": "varchar"
+			},
+			{
+				"name": "location_type_cuisine_id",
+				"type": "varchar"
+			},
+			{
+				"name": "active",
+				"type": "varchar"
+			},
+			{
+				"name": "create_date",
+				"type": "varchar"
+			},
+			{
+				"name": "partner_id",
+				"type": "varchar"
+			},
+			{
+				"name": "region_id",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "ANS_STG",
+			"table": "Sites_odoo"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,405 @@
+{
+	"name": "PartnerODOO_sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDatabase_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "ODOO_Datasets"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "varchar"
+			},
+			{
+				"name": "name",
+				"type": "varchar"
+			},
+			{
+				"name": "company_id",
+				"type": "varchar"
+			},
+			{
+				"name": "create_date",
+				"type": "varchar"
+			},
+			{
+				"name": "display_name",
+				"type": "varchar"
+			},
+			{
+				"name": "date",
+				"type": "varchar"
+			},
+			{
+				"name": "title",
+				"type": "varchar"
+			},
+			{
+				"name": "parent_id",
+				"type": "varchar"
+			},
+			{
+				"name": "ref",
+				"type": "varchar"
+			},
+			{
+				"name": "lang",
+				"type": "varchar"
+			},
+			{
+				"name": "tz",
+				"type": "varchar"
+			},
+			{
+				"name": "user_id",
+				"type": "varchar"
+			},
+			{
+				"name": "vat",
+				"type": "varchar"
+			},
+			{
+				"name": "website",
+				"type": "varchar"
+			},
+			{
+				"name": "comment",
+				"type": "varchar"
+			},
+			{
+				"name": "credit_limit",
+				"type": "varchar"
+			},
+			{
+				"name": "active",
+				"type": "varchar"
+			},
+			{
+				"name": "employee",
+				"type": "varchar"
+			},
+			{
+				"name": "function",
+				"type": "varchar"
+			},
+			{
+				"name": "type",
+				"type": "varchar"
+			},
+			{
+				"name": "street",
+				"type": "varchar"
+			},
+			{
+				"name": "street2",
+				"type": "varchar"
+			},
+			{
+				"name": "zip",
+				"type": "varchar"
+			},
+			{
+				"name": "city",
+				"type": "varchar"
+			},
+			{
+				"name": "state_id",
+				"type": "varchar"
+			},
+			{
+				"name": "country_id",
+				"type": "varchar"
+			},
+			{
+				"name": "partner_latitude",
+				"type": "varchar"
+			},
+			{
+				"name": "partner_longitude",
+				"type": "varchar"
+			},
+			{
+				"name": "email",
+				"type": "varchar"
+			},
+			{
+				"name": "phone",
+				"type": "varchar"
+			},
+			{
+				"name": "mobile",
+				"type": "varchar"
+			},
+			{
+				"name": "is_company",
+				"type": "varchar"
+			},
+			{
+				"name": "industry_id",
+				"type": "varchar"
+			},
+			{
+				"name": "color",
+				"type": "varchar"
+			},
+			{
+				"name": "partner_share",
+				"type": "varchar"
+			},
+			{
+				"name": "commercial_partner_id",
+				"type": "varchar"
+			},
+			{
+				"name": "commercial_company_name",
+				"type": "varchar"
+			},
+			{
+				"name": "company_name",
+				"type": "varchar"
+			},
+			{
+				"name": "create_uid",
+				"type": "varchar"
+			},
+			{
+				"name": "write_uid",
+				"type": "varchar"
+			},
+			{
+				"name": "write_date",
+				"type": "varchar"
+			},
+			{
+				"name": "message_main_attachment_id",
+				"type": "varchar"
+			},
+			{
+				"name": "email_normalized",
+				"type": "varchar"
+			},
+			{
+				"name": "message_bounce",
+				"type": "varchar"
+			},
+			{
+				"name": "contact_address_complete",
+				"type": "varchar"
+			},
+			{
+				"name": "signup_token",
+				"type": "varchar"
+			},
+			{
+				"name": "signup_type",
+				"type": "varchar"
+			},
+			{
+				"name": "signup_expiration",
+				"type": "varchar"
+			},
+			{
+				"name": "phone_sanitized",
+				"type": "varchar"
+			},
+			{
+				"name": "firstname",
+				"type": "varchar"
+			},
+			{
+				"name": "lastname",
+				"type": "varchar"
+			},
+			{
+				"name": "calendar_last_notif_ack",
+				"type": "varchar"
+			},
+			{
+				"name": "fax",
+				"type": "varchar"
+			},
+			{
+				"name": "ice",
+				"type": "varchar"
+			},
+			{
+				"name": "patente_code",
+				"type": "varchar"
+			},
+			{
+				"name": "plan_to_change_car",
+				"type": "varchar"
+			},
+			{
+				"name": "team_id",
+				"type": "varchar"
+			},
+			{
+				"name": "debit_limit",
+				"type": "varchar"
+			},
+			{
+				"name": "last_time_entries_checked",
+				"type": "varchar"
+			},
+			{
+				"name": "invoice_warn",
+				"type": "varchar"
+			},
+			{
+				"name": "invoice_warn_msg",
+				"type": "varchar"
+			},
+			{
+				"name": "supplier_rank",
+				"type": "varchar"
+			},
+			{
+				"name": "customer_rank",
+				"type": "varchar"
+			},
+			{
+				"name": "online_partner_vendor_name",
+				"type": "varchar"
+			},
+			{
+				"name": "online_partner_bank_account",
+				"type": "varchar"
+			},
+			{
+				"name": "sale_warn",
+				"type": "varchar"
+			},
+			{
+				"name": "sale_warn_msg",
+				"type": "varchar"
+			},
+			{
+				"name": "collaborator_parent",
+				"type": "varchar"
+			},
+			{
+				"name": "authorized_persons",
+				"type": "varchar"
+			},
+			{
+				"name": "cin",
+				"type": "varchar"
+			},
+			{
+				"name": "gender",
+				"type": "varchar"
+			},
+			{
+				"name": "sale_subscription_id",
+				"type": "varchar"
+			},
+			{
+				"name": "sale_bulk_subscription_id",
+				"type": "varchar"
+			},
+			{
+				"name": "website_id",
+				"type": "varchar"
+			},
+			{
+				"name": "is_published",
+				"type": "varchar"
+			},
+			{
+				"name": "picking_warn",
+				"type": "varchar"
+			},
+			{
+				"name": "picking_warn_msg",
+				"type": "varchar"
+			},
+			{
+				"name": "purchase_warn",
+				"type": "varchar"
+			},
+			{
+				"name": "purchase_warn_msg",
+				"type": "varchar"
+			},
+			{
+				"name": "barcode",
+				"type": "varchar"
+			},
+			{
+				"name": "rc",
+				"type": "varchar"
+			},
+			{
+				"name": "if_partner",
+				"type": "varchar"
+			},
+			{
+				"name": "cnss",
+				"type": "varchar"
+			},
+			{
+				"name": "patente",
+				"type": "varchar"
+			},
+			{
+				"name": "capital",
+				"type": "varchar"
+			},
+			{
+				"name": "code_supplier",
+				"type": "varchar"
+			},
+			{
+				"name": "legal_person",
+				"type": "varchar"
+			},
+			{
+				"name": "state",
+				"type": "varchar"
+			},
+			{
+				"name": "legal_form",
+				"type": "varchar"
+			},
+			{
+				"name": "date_creation",
+				"type": "varchar"
+			},
+			{
+				"name": "pos_id",
+				"type": "varchar"
+			},
+			{
+				"name": "payer",
+				"type": "varchar"
+			},
+			{
+				"name": "relation_id",
+				"type": "varchar"
+			},
+			{
+				"name": "convention_id",
+				"type": "varchar"
+			},
+			{
+				"name": "company",
+				"type": "varchar"
+			},
+			{
+				"name": "autoriser_multi_mercuriale",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "ANS_STG",
+			"table": "Partner_odoo"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

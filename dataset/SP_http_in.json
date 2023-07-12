@@ -1,0 +1,17 @@
+{
+	"name": "SP_http_in",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SP_input_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

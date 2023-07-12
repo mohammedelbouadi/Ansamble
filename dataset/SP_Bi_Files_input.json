@@ -1,0 +1,31 @@
+{
+	"name": "SP_Bi_Files_input",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SP_bi_files_linkedservice",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"FileName": {
+					"value": "@dataset().Filename",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"Filename": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "SP_Datasets"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,17 @@
+{
+	"name": "HttpServer1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://ansambleint.sharepoint.com/sites/BI354/_api/web/GetFolderByServerRelativeUrl('/sites/BI354/Documents%20partages/General/Source%20de%20donn%C3%A9es/ANSAMBLE/2023/REALISE')/ListItemAllFields",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

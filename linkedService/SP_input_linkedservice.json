@@ -1,0 +1,17 @@
+{
+	"name": "SP_input_linkedservice",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://ansambleint.sharepoint.com/sites/BI354/_api/web/GetFileByServerRelativeUrl ('/sites/BI354/Documents%20partages/General/Source%20de%20donn%C3%A9es/ANSAMBLE/2023/REALISE/04/BASE%20AMORTISSEMENT_AVRIL_2023.xlsx')/$value",
+			"enableServerCertificateValidation": false,
+			"authenticationType": "Anonymous"
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

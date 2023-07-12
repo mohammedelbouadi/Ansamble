@@ -1,0 +1,93 @@
+{
+	"name": "AchatsODOO_sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDatabase_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "ODOO_Datasets"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Id",
+				"type": "varchar"
+			},
+			{
+				"name": "dcd_cloture_id",
+				"type": "varchar"
+			},
+			{
+				"name": "mois",
+				"type": "varchar"
+			},
+			{
+				"name": "site_id",
+				"type": "varchar"
+			},
+			{
+				"name": "day",
+				"type": "varchar"
+			},
+			{
+				"name": "partner_id",
+				"type": "varchar"
+			},
+			{
+				"name": "facture_bl",
+				"type": "varchar"
+			},
+			{
+				"name": "valeur_vivre",
+				"type": "varchar"
+			},
+			{
+				"name": "valeur_boisson",
+				"type": "varchar"
+			},
+			{
+				"name": "valeur_entretien",
+				"type": "varchar"
+			},
+			{
+				"name": "valeur_emballage",
+				"type": "varchar"
+			},
+			{
+				"name": "valeur_divers",
+				"type": "varchar"
+			},
+			{
+				"name": "valeur_ht",
+				"type": "varchar"
+			},
+			{
+				"name": "create_uid",
+				"type": "varchar"
+			},
+			{
+				"name": "create_date",
+				"type": "varchar"
+			},
+			{
+				"name": "write_uid",
+				"type": "varchar"
+			},
+			{
+				"name": "write_date",
+				"type": "varchar"
+			},
+			{
+				"name": "dcd_type",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "ANS_STG",
+			"table": "Achats_odoo"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
