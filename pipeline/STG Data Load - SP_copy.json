@@ -223,7 +223,12 @@
 									"type": "BinarySource",
 									"storeSettings": {
 										"type": "HttpReadSettings",
-										"requestMethod": "GET"
+										"requestMethod": "GET",
+										"additionalHeaders": {
+											"value": "@{concat('Authorization: Bearer ',activity('get Accesstoken').output.access_token)}",
+											"type": "Expression"
+										},
+										"requestTimeout": ""
 									},
 									"formatSettings": {
 										"type": "BinaryReadSettings"
@@ -243,7 +248,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"Filename": {
-											"value": "@concat(item().__metadata.uri, '/$value')",
+											"value": "@concat(\n    replace(\n        string(item().__metadata.uri),'GetFileByServerRelativePath','GetFileByServerRelativeUrl'), '/$value')",
 											"type": "Expression"
 										}
 									}
@@ -299,7 +304,7 @@
 			"name": "ANSAMBLE - BI PROJECT"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-07-12T16:30:38Z"
+		"lastPublishTime": "2023-07-12T16:41:58Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
